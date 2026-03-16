@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen de Anatomía - Academia Sofía</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0d6e9a;
+            --primary-mid: #1589be;
+            --primary-light: #3ab7e0;
+            --primary-pale: #e0f4fb;
+            --primary-ultra: #f0faff;
+            --rose: #d6eef7;
+            --warm-white: #ffffff;
+            --warm-gray: #f0f6fa;
+            --text: #0a2a3a;
+            --text-soft: #3a6a7a;
+            --border: #b8dcea;
+            --correct: #1a7a4a;
+            --correct-bg: #e6f7ee;
+            --incorrect: #c0392b;
+            --incorrect-bg: #fdecea;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #d6eef7 0%, #f0faff 40%, #daf0f8 100%);
+            min-height: 100vh;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .container {
+            background: var(--warm-white);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(13,110,154,0.15), 0 0 0 1px rgba(13,110,154,0.12);
+            max-width: 860px;
+            width: 100%;
+            overflow: hidden;
+            animation: fadeUp 0.6s ease;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .academy-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-mid) 60%, #2fa8d0 100%);
+            padding: 32px 40px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .academy-header::before {
+            content: '';
+            position: absolute;
+            top: -40px; left: -40px; right: -40px; bottom: -40px;
+            background-image: repeating-linear-gradient(
+                45deg, transparent, transparent 28px,
+                rgba(255,255,255,0.06) 28px, rgba(255,255,255,0.06) 29px
+            );
+        }
+        .logo-container {
+            position: relative;
+            width: 100%; max-width: 300px;
+            margin: 0 auto 16px;
+        }
+        .logo-container img { width: 100%; height: auto; max-height: 120px; object-fit: contain; }
+        .teal-divider {
+            width: 80px; height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+            margin: 10px auto 0;
+        }
+        .inner { padding: 36px 44px 40px; }
+        .header { text-align: center; margin-bottom: 28px; }
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.9em; color: var(--text);
+            margin-bottom: 6px; letter-spacing: -0.5px;
+        }
+        .header h1 span { color: var(--primary); }
+        .header p { color: var(--text-soft); font-size: 1em; font-weight: 600; }
+        .progress-wrapper { margin-bottom: 28px; }
+        .progress-info {
+            display: flex; justify-content: space-between;
+            font-size: 0.85em; color: var(--text-soft);
+            font-weight: 700; margin-bottom: 8px;
+        }
+        .progress-bar { width: 100%; height: 10px; background: var(--rose); border-radius: 10px; overflow: hidden; }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            width: 0%; transition: width 0.4s ease; border-radius: 10px;
+        }
+        .question-card { display: none; animation: slideIn 0.35s ease; }
+        .question-card.active { display: block; }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .question-number {
+            display: inline-block;
+            background: var(--primary-pale); color: var(--primary);
+            font-weight: 700; font-size: 0.82em;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            padding: 5px 14px; border-radius: 50px; margin-bottom: 14px;
+            border: 1.5px solid var(--border);
+        }
+        .question-text { font-size: 1.2em; color: var(--text); margin-bottom: 22px; line-height: 1.65; font-weight: 600; }
+        .options { display: flex; flex-direction: column; gap: 12px; }
+        .option {
+            padding: 16px 22px; border: 2px solid var(--border);
+            border-radius: 12px; cursor: pointer; transition: all 0.25s ease;
+            font-size: 1.05em; background: var(--warm-white); color: var(--text);
+            display: flex; align-items: center; gap: 12px;
+        }
+        .option-letter {
+            width: 30px; height: 30px; min-width: 30px; border-radius: 50%;
+            background: var(--primary-ultra); border: 2px solid var(--primary-light);
+            color: var(--primary); font-weight: 800; font-size: 0.85em;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.25s ease;
+        }
+        .option:hover {
+            border-color: var(--primary); background: var(--primary-ultra);
+            transform: translateX(6px); box-shadow: 0 4px 16px rgba(13,110,154,0.1);
+        }
+        .option:hover .option-letter { background: var(--primary); color: white; border-color: var(--primary); }
+        .option.selected { border-color: var(--primary); background: var(--primary-pale); }
+        .option.correct { border-color: var(--correct); background: var(--correct-bg); }
+        .option.correct .option-letter { background: var(--correct); color: white; border-color: var(--correct); }
+        .option.incorrect { border-color: var(--incorrect); background: var(--incorrect-bg); }
+        .option.incorrect .option-letter { background: var(--incorrect); color: white; border-color: var(--incorrect); }
+        .option.disabled { cursor: not-allowed; }
+        .option.disabled:hover { transform: none; box-shadow: none; }
+        .justification {
+            display: none; margin-top: 20px; padding: 18px 22px;
+            background: linear-gradient(to right, var(--primary-ultra), #f8fdff);
+            border-left: 4px solid var(--primary); border-radius: 10px;
+            animation: fadeUp 0.4s ease; font-size: 1em; color: var(--text-soft); line-height: 1.6;
+        }
+        .justification.show { display: block; }
+        .justification strong { color: var(--primary); }
+        .nav-buttons { display: flex; justify-content: space-between; margin-top: 30px; gap: 14px; }
+        .btn {
+            padding: 14px 32px; border: none; border-radius: 10px;
+            font-size: 1em; cursor: pointer; transition: all 0.25s ease;
+            font-weight: 700; font-family: 'Nunito', sans-serif;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-mid));
+            color: white; box-shadow: 0 4px 16px rgba(13,110,154,0.3); border: 2px solid transparent;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px); box-shadow: 0 8px 24px rgba(13,110,154,0.4);
+            background: linear-gradient(135deg, var(--primary-mid), var(--primary-light));
+        }
+        .btn-secondary { background: var(--warm-white); color: var(--text-soft); border: 2px solid var(--border); }
+        .btn-secondary:hover { background: var(--primary-pale); border-color: var(--primary); color: var(--primary); }
+        .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; }
+        .results { display: none; text-align: center; }
+        .results.show { display: block; }
+        .results h2 { font-family: 'Playfair Display', serif; font-size: 1.9em; color: var(--text); margin-bottom: 8px; }
+        .score-circle {
+            width: 200px; height: 200px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-mid));
+            border: 5px solid var(--rose); color: white;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            margin: 28px auto 14px;
+            box-shadow: 0 12px 40px rgba(13,110,154,0.3), 0 0 0 10px rgba(13,110,154,0.08);
+        }
+        .nota-label { font-size: 0.82em; opacity: 0.85; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2px; color: rgba(255,255,255,0.85); }
+        .nota-valor { font-family: 'Playfair Display', serif; font-size: 4em; font-weight: 900; line-height: 1; color: white; }
+        .nota-total { font-size: 1em; opacity: 0.75; }
+        .score-detail {
+            display: inline-block; background: var(--warm-white);
+            border: 2px solid var(--border); border-radius: 12px;
+            padding: 10px 28px; margin-bottom: 20px; font-size: 1em; color: var(--text-soft);
+        }
+        .score-detail span { font-weight: 800; color: var(--primary); }
+        .grade-bar-container { width: 100%; max-width: 480px; margin: 0 auto 20px; }
+        .grade-bar-bg { width: 100%; height: 16px; background: var(--rose); border-radius: 10px; overflow: hidden; margin-bottom: 6px; }
+        .grade-bar-fill { height: 100%; border-radius: 10px; transition: width 1s ease; background: linear-gradient(90deg, var(--primary), var(--primary-light)); }
+        .grade-bar-labels { display: flex; justify-content: space-between; font-size: 0.78em; color: #bbb; padding: 0 2px; }
+        .grade-badge { display: inline-block; padding: 8px 24px; border-radius: 50px; font-weight: 800; font-size: 1em; margin-bottom: 16px; letter-spacing: 0.5px; }
+        .badge-excelente   { background: #e6f7ee; color: #1a7a4a; border: 2px solid #2ecc71; }
+        .badge-bueno       { background: #e8f4fd; color: #1565c0; border: 2px solid #3498db; }
+        .badge-regular     { background: #fef9e7; color: #b7770d; border: 2px solid #f1c40f; }
+        .badge-desaprobado { background: #fdecea; color: #c0392b; border: 2px solid #e74c3c; }
+        .results p.result-msg {
+            font-size: 1.1em; color: var(--text-soft); margin-bottom: 24px;
+            line-height: 1.7; max-width: 500px; margin-left: auto; margin-right: auto;
+        }
+        .results-motto {
+            background: linear-gradient(135deg, var(--primary), var(--primary-mid));
+            color: white; padding: 14px 32px; border-radius: 50px;
+            font-weight: 800; font-size: 1.05em; display: inline-block; margin-top: 8px;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            box-shadow: 0 4px 16px rgba(13,110,154,0.3);
+        }
+        @media (max-width: 600px) {
+            .inner { padding: 24px 20px; }
+            .academy-header { padding: 24px 20px; }
+            .header h1 { font-size: 1.5em; }
+            .question-text { font-size: 1.05em; }
+            .nav-buttons { flex-direction: column; }
+            .score-circle { width: 160px; height: 160px; }
+            .nota-valor { font-size: 3.2em; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="academy-header">
+        <div class="logo-container">
+            <img src="logo_SOFIA-Photoroom.png" alt="Logo Academia Sofía">
+        </div>
+        <div class="teal-divider"></div>
+    </div>
+
+    <div class="inner">
+        <div class="header">
+            <h1>🫀 Examen de <span>Anatomía</span></h1>
+            <p>Ciclo Repaso · 33 Preguntas</p>
+        </div>
+
+        <div class="progress-wrapper">
+            <div class="progress-info">
+                <span id="progressText">Pregunta 1 de 33</span>
+                <span id="progressPct">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+
+        <div id="quizContainer"></div>
+
+        <div class="results" id="results">
+            <h2>🎉 ¡Examen Completado!</h2>
+            <div class="score-circle">
+                <div class="nota-label">Tu nota</div>
+                <div class="nota-valor" id="finalNota">0</div>
+                <div class="nota-total">/ 20</div>
+            </div>
+            <div class="score-detail">
+                Respuestas correctas: <span id="finalScore">0</span> de <span id="totalQuestions">33</span>
+            </div>
+            <div class="grade-bar-container">
+                <div class="grade-bar-bg">
+                    <div class="grade-bar-fill" id="gradeBarFill" style="width:0%"></div>
+                </div>
+                <div class="grade-bar-labels"><span>0</span><span>5</span><span>10</span><span>15</span><span>20</span></div>
+            </div>
+            <div id="gradeBadge" class="grade-badge"></div>
+            <p class="result-msg" id="resultMessage"></p>
+            <div class="results-motto">— Tutor Franklin —</div>
+            <br><br>
+            <button class="btn btn-primary" onclick="restartQuiz()">🔄 Reintentar Examen</button>
+        </div>
+
+        <div class="nav-buttons" id="navButtons">
+            <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()">← Anterior</button>
+            <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">Siguiente →</button>
+        </div>
+    </div>
+</div>
+
+<script>
+const questions = [
+    {
+        question: "La pared más gruesa del corazón corresponde a:",
+        options: ["Aurícula derecha", "Ventrículo izquierdo", "Aurícula izquierda", "Septum", "Ventrículo derecho"],
+        correct: 1,
+        justification: "El ventrículo izquierdo bombea sangre hacia toda la circulación sistémica, por lo que necesita mayor fuerza y posee la pared muscular más gruesa."
+    },
+    {
+        question: "Las válvulas cardiacas se encuentran revestidas de:",
+        options: ["Epicardio", "Pericardio", "Miocardio", "Endocardio", "Mesotelio"],
+        correct: 3,
+        justification: "El endocardio recubre el interior del corazón y también las válvulas cardíacas."
+    },
+    {
+        question: "El vaso sanguíneo que irriga al músculo cardiaco se denomina:",
+        options: ["Arteria subclavia", "Arteria carótida", "Arteria coronaria", "Arteria pulmonar", "Arteria intercostal"],
+        correct: 2,
+        justification: "Las arterias coronarias llevan sangre oxigenada al miocardio."
+    },
+    {
+        question: "La aurícula derecha no se comunica con:",
+        options: ["Vena cava superior", "Vena cava inferior", "Venas pulmonares", "Seno coronario", "Ventrículo derecho"],
+        correct: 2,
+        justification: "Las venas pulmonares desembocan en la aurícula izquierda, no en la derecha."
+    },
+    {
+        question: "El nodo que retrasa el impulso cardiaco es:",
+        options: ["Haz de His", "Red de Purkinje", "Nodo sinusal", "Haces internodales", "Nodo auriculoventricular"],
+        correct: 4,
+        justification: "El nodo auriculoventricular retrasa el impulso para permitir el llenado completo de los ventrículos antes de que se contraigan."
+    },
+    {
+        question: "Células encargadas del proceso inmunológico:",
+        options: ["Eritrocitos", "Plasma", "Leucocitos", "Hemoglobina", "Plaquetas"],
+        correct: 2,
+        justification: "Los leucocitos son glóbulos blancos que defienden al organismo frente a agentes extraños e infecciones."
+    },
+    {
+        question: "En la coagulación sanguínea intervienen:",
+        options: ["Basófilos", "Eosinófilos", "Neutrófilos", "Plaquetas", "Hematíes"],
+        correct: 3,
+        justification: "Las plaquetas forman el tapón plaquetario que inicia el proceso de coagulación."
+    },
+    {
+        question: "La hemocateresis es:",
+        options: ["Producción de eritrocitos", "Destrucción de glóbulos rojos", "Formación de plaquetas", "Producción de anticuerpos", "Producción de hemoglobina"],
+        correct: 1,
+        justification: "Los eritrocitos envejecidos se destruyen principalmente en el bazo mediante el proceso de hemocateresis."
+    },
+    {
+        question: "La adaptación del hombre a la altura consiste en:",
+        options: ["Disminución de eritrocitos", "Aumento de glóbulos rojos", "Disminución de leucocitos", "Aumento de bilirrubina", "Disminución de hemoglobina"],
+        correct: 1,
+        justification: "El organismo produce más glóbulos rojos para compensar la baja presión de oxígeno en las alturas y transportar más O₂."
+    },
+    {
+        question: "La vía respiratoria conductora termina en:",
+        options: ["Bronquios", "Tráquea", "Bronquiolo terminal", "Bronquiolo respiratorio", "Conducto alveolar"],
+        correct: 2,
+        justification: "El bronquiolo terminal es el último segmento que solo conduce aire, sin participar en el intercambio gaseoso."
+    },
+    {
+        question: "El cartílago de la laringe llamado 'manzana de Adán' es:",
+        options: ["Epiglotis", "Tiroides", "Cricoides", "Aritenoides", "Corniculado"],
+        correct: 1,
+        justification: "El cartílago tiroides es el más grande de los cartílagos laríngeos y forma la prominencia visible llamada manzana de Adán."
+    },
+    {
+        question: "Estructura que evita el paso de alimentos a la tráquea:",
+        options: ["Glotis", "Faringe", "Epiglotis", "Laringe", "Tráquea"],
+        correct: 2,
+        justification: "La epiglotis actúa como una válvula que cierra la entrada a la tráquea durante la deglución."
+    },
+    {
+        question: "El fenómeno de la hematosis ocurre en:",
+        options: ["Bronquios", "Tráquea", "Alvéolos", "Laringe", "Bronquiolos"],
+        correct: 2,
+        justification: "En los alvéolos ocurre el intercambio gaseoso (hematosis): el O₂ pasa a la sangre y el CO₂ es liberado al aire."
+    },
+    {
+        question: "La digestión de los almidones se inicia en:",
+        options: ["Estómago", "Boca", "Duodeno", "Yeyuno", "Intestino grueso"],
+        correct: 1,
+        justification: "La amilasa salival (ptialina) presente en la saliva inicia la hidrólisis del almidón en la boca."
+    },
+    {
+        question: "La mayor parte del diente está formada por:",
+        options: ["Esmalte", "Pulpa", "Cemento", "Dentina", "Membrana periodontal"],
+        correct: 3,
+        justification: "La dentina constituye la mayor masa del diente, ubicada debajo del esmalte en la corona y del cemento en la raíz."
+    },
+    {
+        question: "El órgano que no forma parte del tubo digestivo es:",
+        options: ["Boca", "Esófago", "Estómago", "Intestino delgado", "Hígado"],
+        correct: 4,
+        justification: "El hígado es una glándula digestiva anexa; no forma parte del tubo digestivo propiamente dicho."
+    },
+    {
+        question: "El ácido clorhídrico del estómago es producido por:",
+        options: ["Células mucosas", "Células parietales", "Células principales", "Células pilóricas", "Células endocrinas"],
+        correct: 1,
+        justification: "Las células parietales (u oxínticas) secretan HCl y el factor intrínseco necesario para absorber vitamina B12."
+    },
+    {
+        question: "El movimiento que impulsa el alimento a lo largo del tubo digestivo es:",
+        options: ["Deglución", "Masticación", "Peristalsis", "Ingestión", "Absorción"],
+        correct: 2,
+        justification: "La peristalsis son contracciones musculares ondulatorias que desplazan el contenido a lo largo del tubo digestivo."
+    },
+    {
+        question: "La unidad funcional del riñón es:",
+        options: ["Lóbulo renal", "Nefrona", "Cálice", "Pelvis renal", "Corpúsculo renal"],
+        correct: 1,
+        justification: "La nefrona realiza las tres funciones renales esenciales: filtración, reabsorción y secreción para producir orina."
+    },
+    {
+        question: "Los glomérulos se encuentran en:",
+        options: ["Médula renal", "Corteza renal", "Cápsula", "Pelvis renal", "Cálices"],
+        correct: 1,
+        justification: "La filtración glomerular ocurre en la corteza renal, donde se ubican los corpúsculos de Malpighi."
+    },
+    {
+        question: "El vaso que llega al glomérulo es:",
+        options: ["Arteriola eferente", "Arteria renal", "Arteriola aferente", "Vena renal", "Capilar peritubular"],
+        correct: 2,
+        justification: "La arteriola aferente conduce sangre hacia el glomérulo para su filtración; la eferente la retira."
+    },
+    {
+        question: "La hormona producida por las células yuxtaglomerulares es:",
+        options: ["Angiotensina", "Renina", "Serotonina", "Vasopresina", "Rennina"],
+        correct: 1,
+        justification: "La renina es secretada por las células yuxtaglomerulares y regula la presión arterial a través del sistema renina-angiotensina-aldosterona."
+    },
+    {
+        question: "La unidad funcional del sistema nervioso es:",
+        options: ["Axón", "Neurona", "Dendrita", "Mielina", "Sinapsis"],
+        correct: 1,
+        justification: "La neurona es la célula especializada en recibir, integrar y transmitir impulsos nerviosos."
+    },
+    {
+        question: "La unión entre dos neuronas se denomina:",
+        options: ["Axón", "Sinapsis", "Dendrita", "Axolema", "Pericarion"],
+        correct: 1,
+        justification: "La sinapsis es el punto de comunicación funcional donde se transmite el impulso nervioso de una neurona a otra."
+    },
+    {
+        question: "La sustancia gris está formada principalmente por:",
+        options: ["Axones mielinizados", "Cuerpos neuronales", "Nervios", "Vasos sanguíneos", "Tejido conectivo"],
+        correct: 1,
+        justification: "La sustancia gris contiene principalmente los somas (pericariones) de las neuronas, que carecen de mielina."
+    },
+    {
+        question: "El área de Broca se ubica en el lóbulo:",
+        options: ["Parietal", "Temporal", "Occipital", "Frontal", "Insular"],
+        correct: 3,
+        justification: "El área de Broca, ubicada en el lóbulo frontal izquierdo, controla la producción motora del lenguaje hablado."
+    },
+    {
+        question: "El centro de la visión está en el lóbulo:",
+        options: ["Parietal", "Temporal", "Occipital", "Frontal", "Insular"],
+        correct: 2,
+        justification: "La corteza visual primaria, responsable de procesar la información visual, se localiza en el lóbulo occipital."
+    },
+    {
+        question: "La glándula que tiene función endocrina y exocrina a la vez es:",
+        options: ["Hipófisis", "Páncreas", "Tiroides", "Paratiroides", "Suprarrenal"],
+        correct: 1,
+        justification: "El páncreas tiene función exocrina (secreta enzimas digestivas al duodeno) y endocrina (produce insulina y glucagón)."
+    },
+    {
+        question: "La hormona que regula el crecimiento corporal es:",
+        options: ["FSH", "LH", "Prolactina", "Somatotropina", "Oxitocina"],
+        correct: 3,
+        justification: "La somatotropina (hormona del crecimiento, GH) es secretada por la adenohipófisis y estimula el crecimiento de tejidos y huesos."
+    },
+    {
+        question: "La hormona que regula el metabolismo basal es:",
+        options: ["Tiroxina", "Insulina", "Progesterona", "Cortisol", "Adrenalina"],
+        correct: 0,
+        justification: "La tiroxina (T4), producida por la glándula tiroides, regula el metabolismo basal y el desarrollo corporal."
+    },
+    {
+        question: "La hormona sexual masculina principal es:",
+        options: ["Estrógeno", "Progesterona", "Testosterona", "Prolactina", "Oxitocina"],
+        correct: 2,
+        justification: "La testosterona, producida por las células de Leydig en los testículos, es responsable de los caracteres sexuales masculinos."
+    },
+    {
+        question: "Los espermatozoides adquieren movilidad en:",
+        options: ["Próstata", "Epidídimo", "Vesícula seminal", "Uretra", "Conducto deferente"],
+        correct: 1,
+        justification: "En el epidídimo los espermatozoides completan su maduración y adquieren capacidad de movimiento (motilidad)."
+    },
+    {
+        question: "La secreción rica en fructosa que nutre a los espermatozoides proviene de:",
+        options: ["Próstata", "Epidídimo", "Vesículas seminales", "Glándula de Cowper", "Testículos"],
+        correct: 2,
+        justification: "Las vesículas seminales secretan un líquido rico en fructosa que sirve como fuente de energía para los espermatozoides."
+    }
+];
+
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
+const userAnswers = [];
+
+function initQuiz() { renderQuestion(); updateProgress(); updateButtons(); }
+
+function renderQuestion() {
+    const q = questions[currentQuestion];
+    const container = document.getElementById('quizContainer');
+    const letters = ['A', 'B', 'C', 'D', 'E'];
+    container.innerHTML = `
+        <div class="question-card active">
+            <div class="question-number">Pregunta ${currentQuestion + 1} de ${questions.length}</div>
+            <div class="question-text">${q.question}</div>
+            <div class="options">
+                ${q.options.map((option, index) => `
+                    <div class="option" onclick="selectOption(${index})" data-index="${index}">
+                        <span class="option-letter">${letters[index]}</span>
+                        <span>${option}</span>
+                    </div>
+                `).join('')}
+            </div>
+            <div class="justification" id="justification">
+                <strong>💡 Justificación:</strong> ${q.justification}
+            </div>
+        </div>
+    `;
+    if (userAnswers[currentQuestion] !== undefined) showPreviousAnswer();
+}
+
+function selectOption(index) {
+    if (answered) return;
+    const options = document.querySelectorAll('.option');
+    options.forEach(opt => opt.classList.remove('selected'));
+    options[index].classList.add('selected');
+    answered = true;
+    userAnswers[currentQuestion] = index;
+    const q = questions[currentQuestion];
+    setTimeout(() => {
+        if (index === q.correct) { options[index].classList.add('correct'); score++; }
+        else { options[index].classList.add('incorrect'); options[q.correct].classList.add('correct'); }
+        options.forEach(opt => opt.classList.add('disabled'));
+        document.getElementById('justification').classList.add('show');
+        updateButtons();
+    }, 300);
+}
+
+function showPreviousAnswer() {
+    const options = document.querySelectorAll('.option');
+    const userAnswer = userAnswers[currentQuestion];
+    const q = questions[currentQuestion];
+    options[userAnswer].classList.add('selected');
+    if (userAnswer === q.correct) options[userAnswer].classList.add('correct');
+    else { options[userAnswer].classList.add('incorrect'); options[q.correct].classList.add('correct'); }
+    options.forEach(opt => opt.classList.add('disabled'));
+    document.getElementById('justification').classList.add('show');
+    answered = true;
+}
+
+function nextQuestion() {
+    if (!answered && userAnswers[currentQuestion] === undefined) {
+        alert('Por favor, selecciona una respuesta antes de continuar.');
+        return;
+    }
+    if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        answered = userAnswers[currentQuestion] !== undefined;
+        renderQuestion(); updateProgress(); updateButtons();
+        window.scrollTo(0, 0);
+    } else { showResults(); }
+}
+
+function previousQuestion() {
+    if (currentQuestion > 0) {
+        currentQuestion--;
+        answered = true;
+        renderQuestion(); updateProgress(); updateButtons();
+        window.scrollTo(0, 0);
+    }
+}
+
+function updateButtons() {
+    document.getElementById('prevBtn').disabled = currentQuestion === 0;
+    document.getElementById('nextBtn').textContent = (currentQuestion === questions.length - 1)
+        ? (answered ? 'Ver Resultados 🎯' : 'Finalizar 🎯')
+        : 'Siguiente →';
+}
+
+function updateProgress() {
+    const pct = Math.round(((currentQuestion + 1) / questions.length) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = `Pregunta ${currentQuestion + 1} de ${questions.length}`;
+    document.getElementById('progressPct').textContent = pct + '%';
+}
+
+function showResults() {
+    document.getElementById('quizContainer').style.display = 'none';
+    document.getElementById('navButtons').style.display = 'none';
+    document.getElementById('results').classList.add('show');
+    const total = questions.length;
+    const nota = Math.round((score / total) * 20);
+    document.getElementById('finalScore').textContent = score;
+    document.getElementById('totalQuestions').textContent = total;
+    document.getElementById('finalNota').textContent = nota;
+    setTimeout(() => {
+        document.getElementById('gradeBarFill').style.width = ((nota / 20) * 100) + '%';
+    }, 200);
+    const badge = document.getElementById('gradeBadge');
+    const msg = document.getElementById('resultMessage');
+    if (nota >= 17) {
+        badge.textContent = '🏆 Sobresaliente'; badge.className = 'grade-badge badge-excelente';
+        msg.textContent = '¡Excelente desempeño! Dominas con solidez los sistemas del cuerpo humano. ¡Así se llega a la universidad! 🌟';
+    } else if (nota >= 14) {
+        badge.textContent = '👏 Aprobado — Bueno'; badge.className = 'grade-badge badge-bueno';
+        msg.textContent = '¡Muy bien! Tienes buenos conocimientos de anatomía. Refuerza los temas donde fallaste y estarás listo para el examen de admisión. 📚';
+    } else if (nota >= 11) {
+        badge.textContent = '📖 Aprobado — Regular'; badge.className = 'grade-badge badge-regular';
+        msg.textContent = 'Vas por buen camino, pero aún hay sistemas que necesitan más repaso. ¡Tú puedes mejorar, sigue adelante! ✏️';
+    } else {
+        badge.textContent = '💪 Desaprobado — Sigue intentando'; badge.className = 'grade-badge badge-desaprobado';
+        msg.textContent = 'No te rindas. Cada error es una lección. Repasa los sistemas con calma, vuelve a intentarlo y verás cómo mejoras. ¡Ánimo! 🔥';
+    }
+}
+
+function restartQuiz() {
+    currentQuestion = 0; score = 0; answered = false; userAnswers.length = 0;
+    document.getElementById('gradeBarFill').style.width = '0%';
+    document.getElementById('quizContainer').style.display = 'block';
+    document.getElementById('navButtons').style.display = 'flex';
+    document.getElementById('results').classList.remove('show');
+    initQuiz();
+}
+
+initQuiz();
+</script>
+</body>
+</html>
