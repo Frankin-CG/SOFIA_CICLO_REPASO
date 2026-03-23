@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Examen de Anatomía - Academia Sofía</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Examen de Historia Universal - Academia Sofía</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0d6e9a;
-            --primary-mid: #1589be;
-            --primary-light: #3ab7e0;
-            --primary-pale: #e0f4fb;
-            --primary-ultra: #f0faff;
-            --rose: #d6eef7;
+            --primary: #7b2d00;
+            --primary-mid: #a84000;
+            --primary-light: #d4691e;
+            --primary-pale: #fdf0e8;
+            --primary-ultra: #fff8f3;
+            --rose: #f5ddd0;
             --warm-white: #ffffff;
-            --warm-gray: #f0f6fa;
-            --text: #0a2a3a;
-            --text-soft: #3a6a7a;
-            --border: #b8dcea;
+            --warm-gray: #faf5f0;
+            --text: #2a0e00;
+            --text-soft: #6b3a1f;
+            --border: #e8c4a8;
             --correct: #1a7a4a;
             --correct-bg: #e6f7ee;
             --incorrect: #c0392b;
@@ -26,7 +26,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Nunito', sans-serif;
-            background: linear-gradient(135deg, #d6eef7 0%, #f0faff 40%, #daf0f8 100%);
+            background: linear-gradient(135deg, #f5ddd0 0%, #fff8f3 40%, #fde8d0 100%);
             min-height: 100vh;
             padding: 30px 20px;
             display: flex;
@@ -36,7 +36,7 @@
         .container {
             background: var(--warm-white);
             border-radius: 24px;
-            box-shadow: 0 20px 60px rgba(13,110,154,0.15), 0 0 0 1px rgba(13,110,154,0.12);
+            box-shadow: 0 20px 60px rgba(123,45,0,0.15), 0 0 0 1px rgba(123,45,0,0.12);
             max-width: 860px;
             width: 100%;
             overflow: hidden;
@@ -47,7 +47,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
         .academy-header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-mid) 60%, #2fa8d0 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-mid) 60%, #c45a20 100%);
             padding: 32px 40px 24px;
             text-align: center;
             position: relative;
@@ -68,7 +68,7 @@
             margin: 0 auto 16px;
         }
         .logo-container img { width: 100%; height: auto; max-height: 120px; object-fit: contain; }
-        .teal-divider {
+        .amber-divider {
             width: 80px; height: 3px;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
             margin: 10px auto 0;
@@ -76,7 +76,7 @@
         .inner { padding: 36px 44px 40px; }
         .header { text-align: center; margin-bottom: 28px; }
         .header h1 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cinzel', serif;
             font-size: 1.9em; color: var(--text);
             margin-bottom: 6px; letter-spacing: -0.5px;
         }
@@ -125,7 +125,7 @@
         }
         .option:hover {
             border-color: var(--primary); background: var(--primary-ultra);
-            transform: translateX(6px); box-shadow: 0 4px 16px rgba(13,110,154,0.1);
+            transform: translateX(6px); box-shadow: 0 4px 16px rgba(123,45,0,0.1);
         }
         .option:hover .option-letter { background: var(--primary); color: white; border-color: var(--primary); }
         .option.selected { border-color: var(--primary); background: var(--primary-pale); }
@@ -137,7 +137,7 @@
         .option.disabled:hover { transform: none; box-shadow: none; }
         .justification {
             display: none; margin-top: 20px; padding: 18px 22px;
-            background: linear-gradient(to right, var(--primary-ultra), #f8fdff);
+            background: linear-gradient(to right, var(--primary-ultra), #fffaf6);
             border-left: 4px solid var(--primary); border-radius: 10px;
             animation: fadeUp 0.4s ease; font-size: 1em; color: var(--text-soft); line-height: 1.6;
         }
@@ -151,10 +151,10 @@
         }
         .btn-primary {
             background: linear-gradient(135deg, var(--primary), var(--primary-mid));
-            color: white; box-shadow: 0 4px 16px rgba(13,110,154,0.3); border: 2px solid transparent;
+            color: white; box-shadow: 0 4px 16px rgba(123,45,0,0.3); border: 2px solid transparent;
         }
         .btn-primary:hover {
-            transform: translateY(-2px); box-shadow: 0 8px 24px rgba(13,110,154,0.4);
+            transform: translateY(-2px); box-shadow: 0 8px 24px rgba(123,45,0,0.4);
             background: linear-gradient(135deg, var(--primary-mid), var(--primary-light));
         }
         .btn-secondary { background: var(--warm-white); color: var(--text-soft); border: 2px solid var(--border); }
@@ -162,17 +162,17 @@
         .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; }
         .results { display: none; text-align: center; }
         .results.show { display: block; }
-        .results h2 { font-family: 'Playfair Display', serif; font-size: 1.9em; color: var(--text); margin-bottom: 8px; }
+        .results h2 { font-family: 'Cinzel', serif; font-size: 1.9em; color: var(--text); margin-bottom: 8px; }
         .score-circle {
             width: 200px; height: 200px; border-radius: 50%;
             background: linear-gradient(135deg, var(--primary), var(--primary-mid));
             border: 5px solid var(--rose); color: white;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             margin: 28px auto 14px;
-            box-shadow: 0 12px 40px rgba(13,110,154,0.3), 0 0 0 10px rgba(13,110,154,0.08);
+            box-shadow: 0 12px 40px rgba(123,45,0,0.3), 0 0 0 10px rgba(123,45,0,0.08);
         }
         .nota-label { font-size: 0.82em; opacity: 0.85; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2px; color: rgba(255,255,255,0.85); }
-        .nota-valor { font-family: 'Playfair Display', serif; font-size: 4em; font-weight: 900; line-height: 1; color: white; }
+        .nota-valor { font-family: 'Cinzel', serif; font-size: 4em; font-weight: 900; line-height: 1; color: white; }
         .nota-total { font-size: 1em; opacity: 0.75; }
         .score-detail {
             display: inline-block; background: var(--warm-white);
@@ -198,7 +198,7 @@
             color: white; padding: 14px 32px; border-radius: 50px;
             font-weight: 800; font-size: 1.05em; display: inline-block; margin-top: 8px;
             letter-spacing: 1.5px; text-transform: uppercase;
-            box-shadow: 0 4px 16px rgba(13,110,154,0.3);
+            box-shadow: 0 4px 16px rgba(123,45,0,0.3);
         }
         @media (max-width: 600px) {
             .inner { padding: 24px 20px; }
@@ -217,18 +217,18 @@
         <div class="logo-container">
             <img src="logo_SOFIA-Photoroom.png" alt="Logo Academia Sofía">
         </div>
-        <div class="teal-divider"></div>
+        <div class="amber-divider"></div>
     </div>
 
     <div class="inner">
         <div class="header">
-            <h1>🫀 Examen de <span>Anatomía</span></h1>
-            <p>Ciclo Repaso · 33 Preguntas</p>
+            <h1>🏛️ Examen de <span>Historia Universal</span></h1>
+            <p>Ciclo Repaso · 38 Preguntas</p>
         </div>
 
         <div class="progress-wrapper">
             <div class="progress-info">
-                <span id="progressText">Pregunta 1 de 33</span>
+                <span id="progressText">Pregunta 1 de 38</span>
                 <span id="progressPct">0%</span>
             </div>
             <div class="progress-bar">
@@ -246,7 +246,7 @@
                 <div class="nota-total">/ 20</div>
             </div>
             <div class="score-detail">
-                Respuestas correctas: <span id="finalScore">0</span> de <span id="totalQuestions">33</span>
+                Respuestas correctas: <span id="finalScore">0</span> de <span id="totalQuestions">38</span>
             </div>
             <div class="grade-bar-container">
                 <div class="grade-bar-bg">
@@ -271,202 +271,238 @@
 <script>
 const questions = [
     {
-        question: "La pared más gruesa del corazón corresponde a:",
-        options: ["Aurícula derecha", "Ventrículo izquierdo", "Aurícula izquierda", "Septum", "Ventrículo derecho"],
-        correct: 1,
-        justification: "El ventrículo izquierdo bombea sangre hacia toda la circulación sistémica, por lo que necesita mayor fuerza y posee la pared muscular más gruesa."
-    },
-    {
-        question: "Las válvulas cardiacas se encuentran revestidas de:",
-        options: ["Epicardio", "Pericardio", "Miocardio", "Endocardio", "Mesotelio"],
+        question: "El conocimiento especializado que auxilia a la Historia, y se dedica a analizar e interpretar las inscripciones encontradas en los restos materiales, es denominado:",
+        options: ["Paleografía", "Heráldica", "Numismática", "Epigrafía"],
         correct: 3,
-        justification: "El endocardio recubre el interior del corazón y también las válvulas cardíacas."
+        justification: "La epigrafía estudia las inscripciones grabadas en materiales duros como piedra o metal, siendo una ciencia auxiliar de la Historia."
     },
     {
-        question: "El vaso sanguíneo que irriga al músculo cardiaco se denomina:",
-        options: ["Arteria subclavia", "Arteria carótida", "Arteria coronaria", "Arteria pulmonar", "Arteria intercostal"],
-        correct: 2,
-        justification: "Las arterias coronarias llevan sangre oxigenada al miocardio."
-    },
-    {
-        question: "La aurícula derecha no se comunica con:",
-        options: ["Vena cava superior", "Vena cava inferior", "Venas pulmonares", "Seno coronario", "Ventrículo derecho"],
-        correct: 2,
-        justification: "Las venas pulmonares desembocan en la aurícula izquierda, no en la derecha."
-    },
-    {
-        question: "El nodo que retrasa el impulso cardiaco es:",
-        options: ["Haz de His", "Red de Purkinje", "Nodo sinusal", "Haces internodales", "Nodo auriculoventricular"],
-        correct: 4,
-        justification: "El nodo auriculoventricular retrasa el impulso para permitir el llenado completo de los ventrículos antes de que se contraigan."
-    },
-    {
-        question: "Células encargadas del proceso inmunológico:",
-        options: ["Eritrocitos", "Plasma", "Leucocitos", "Hemoglobina", "Plaquetas"],
-        correct: 2,
-        justification: "Los leucocitos son glóbulos blancos que defienden al organismo frente a agentes extraños e infecciones."
-    },
-    {
-        question: "En la coagulación sanguínea intervienen:",
-        options: ["Basófilos", "Eosinófilos", "Neutrófilos", "Plaquetas", "Hematíes"],
+        question: "El Homo ______ vivió en Europa y Asia durante el Paleolítico medio. Era robusto y de tórax ancho. Elaboraron los artefactos líticos de la cultura Musteriense y realizaban inhumaciones.",
+        options: ["Hábilis", "Ergaster", "Erectus", "Neanderthalensis"],
         correct: 3,
-        justification: "Las plaquetas forman el tapón plaquetario que inicia el proceso de coagulación."
+        justification: "El Homo neanderthalensis corresponde al Paleolítico medio, creó la cultura Musteriense y fue el primero en practicar enterramientos rituales."
     },
     {
-        question: "La hemocateresis es:",
-        options: ["Producción de eritrocitos", "Destrucción de glóbulos rojos", "Formación de plaquetas", "Producción de anticuerpos", "Producción de hemoglobina"],
-        correct: 1,
-        justification: "Los eritrocitos envejecidos se destruyen principalmente en el bazo mediante el proceso de hemocateresis."
-    },
-    {
-        question: "La adaptación del hombre a la altura consiste en:",
-        options: ["Disminución de eritrocitos", "Aumento de glóbulos rojos", "Disminución de leucocitos", "Aumento de bilirrubina", "Disminución de hemoglobina"],
-        correct: 1,
-        justification: "El organismo produce más glóbulos rojos para compensar la baja presión de oxígeno en las alturas y transportar más O₂."
-    },
-    {
-        question: "La vía respiratoria conductora termina en:",
-        options: ["Bronquios", "Tráquea", "Bronquiolo terminal", "Bronquiolo respiratorio", "Conducto alveolar"],
+        question: "Una característica de la periodificación más popular de la historia universal, creada por el filósofo alemán Cristóbal Keller, es su:",
+        options: ["Énfasis en los hechos económicos", "Valoración de los aportes cristianos", "Connotación eurocéntrica", "Presentación de hitos religiosos"],
         correct: 2,
-        justification: "El bronquiolo terminal es el último segmento que solo conduce aire, sin participar en el intercambio gaseoso."
+        justification: "La periodización de Keller (Antigua, Media, Moderna) divide la historia desde una perspectiva centrada en Europa occidental."
     },
     {
-        question: "El cartílago de la laringe llamado 'manzana de Adán' es:",
-        options: ["Epiglotis", "Tiroides", "Cricoides", "Aritenoides", "Corniculado"],
-        correct: 1,
-        justification: "El cartílago tiroides es el más grande de los cartílagos laríngeos y forma la prominencia visible llamada manzana de Adán."
-    },
-    {
-        question: "Estructura que evita el paso de alimentos a la tráquea:",
-        options: ["Glotis", "Faringe", "Epiglotis", "Laringe", "Tráquea"],
-        correct: 2,
-        justification: "La epiglotis actúa como una válvula que cierra la entrada a la tráquea durante la deglución."
-    },
-    {
-        question: "El fenómeno de la hematosis ocurre en:",
-        options: ["Bronquios", "Tráquea", "Alvéolos", "Laringe", "Bronquiolos"],
-        correct: 2,
-        justification: "En los alvéolos ocurre el intercambio gaseoso (hematosis): el O₂ pasa a la sangre y el CO₂ es liberado al aire."
-    },
-    {
-        question: "La digestión de los almidones se inicia en:",
-        options: ["Estómago", "Boca", "Duodeno", "Yeyuno", "Intestino grueso"],
-        correct: 1,
-        justification: "La amilasa salival (ptialina) presente en la saliva inicia la hidrólisis del almidón en la boca."
-    },
-    {
-        question: "La mayor parte del diente está formada por:",
-        options: ["Esmalte", "Pulpa", "Cemento", "Dentina", "Membrana periodontal"],
+        question: "La domesticación de plantas y animales durante el Neolítico trajo como consecuencia:",
+        options: ["La aparición de la escritura alfabética", "La organización social en bandas", "El inicio del nomadismo intensivo", "El surgimiento de la propiedad privada"],
         correct: 3,
-        justification: "La dentina constituye la mayor masa del diente, ubicada debajo del esmalte en la corona y del cemento en la raíz."
+        justification: "El sedentarismo y los excedentes agrícolas del Neolítico generaron acumulación de bienes y el surgimiento de la propiedad privada."
     },
     {
-        question: "El órgano que no forma parte del tubo digestivo es:",
-        options: ["Boca", "Esófago", "Estómago", "Intestino delgado", "Hígado"],
-        correct: 4,
-        justification: "El hígado es una glándula digestiva anexa; no forma parte del tubo digestivo propiamente dicho."
-    },
-    {
-        question: "El ácido clorhídrico del estómago es producido por:",
-        options: ["Células mucosas", "Células parietales", "Células principales", "Células pilóricas", "Células endocrinas"],
-        correct: 1,
-        justification: "Las células parietales (u oxínticas) secretan HCl y el factor intrínseco necesario para absorber vitamina B12."
-    },
-    {
-        question: "El movimiento que impulsa el alimento a lo largo del tubo digestivo es:",
-        options: ["Deglución", "Masticación", "Peristalsis", "Ingestión", "Absorción"],
-        correct: 2,
-        justification: "La peristalsis son contracciones musculares ondulatorias que desplazan el contenido a lo largo del tubo digestivo."
-    },
-    {
-        question: "La unidad funcional del riñón es:",
-        options: ["Lóbulo renal", "Nefrona", "Cálice", "Pelvis renal", "Corpúsculo renal"],
-        correct: 1,
-        justification: "La nefrona realiza las tres funciones renales esenciales: filtración, reabsorción y secreción para producir orina."
-    },
-    {
-        question: "Los glomérulos se encuentran en:",
-        options: ["Médula renal", "Corteza renal", "Cápsula", "Pelvis renal", "Cálices"],
-        correct: 1,
-        justification: "La filtración glomerular ocurre en la corteza renal, donde se ubican los corpúsculos de Malpighi."
-    },
-    {
-        question: "El vaso que llega al glomérulo es:",
-        options: ["Arteriola eferente", "Arteria renal", "Arteriola aferente", "Vena renal", "Capilar peritubular"],
-        correct: 2,
-        justification: "La arteriola aferente conduce sangre hacia el glomérulo para su filtración; la eferente la retira."
-    },
-    {
-        question: "La hormona producida por las células yuxtaglomerulares es:",
-        options: ["Angiotensina", "Renina", "Serotonina", "Vasopresina", "Rennina"],
-        correct: 1,
-        justification: "La renina es secretada por las células yuxtaglomerulares y regula la presión arterial a través del sistema renina-angiotensina-aldosterona."
-    },
-    {
-        question: "La unidad funcional del sistema nervioso es:",
-        options: ["Axón", "Neurona", "Dendrita", "Mielina", "Sinapsis"],
-        correct: 1,
-        justification: "La neurona es la célula especializada en recibir, integrar y transmitir impulsos nerviosos."
-    },
-    {
-        question: "La unión entre dos neuronas se denomina:",
-        options: ["Axón", "Sinapsis", "Dendrita", "Axolema", "Pericarion"],
-        correct: 1,
-        justification: "La sinapsis es el punto de comunicación funcional donde se transmite el impulso nervioso de una neurona a otra."
-    },
-    {
-        question: "La sustancia gris está formada principalmente por:",
-        options: ["Axones mielinizados", "Cuerpos neuronales", "Nervios", "Vasos sanguíneos", "Tejido conectivo"],
-        correct: 1,
-        justification: "La sustancia gris contiene principalmente los somas (pericariones) de las neuronas, que carecen de mielina."
-    },
-    {
-        question: "El área de Broca se ubica en el lóbulo:",
-        options: ["Parietal", "Temporal", "Occipital", "Frontal", "Insular"],
+        question: "Una característica socio-política que se manifestó en la Edad del Hierro fue:",
+        options: ["La aparición de las primeras ciudades estado", "El inicio de la organización tribal", "El surgimiento de los clanes matriarcales", "La expansión de los estados esclavistas"],
         correct: 3,
-        justification: "El área de Broca, ubicada en el lóbulo frontal izquierdo, controla la producción motora del lenguaje hablado."
+        justification: "Las mejores herramientas y armas de hierro permitieron la expansión y consolidación de estados esclavistas."
     },
     {
-        question: "El centro de la visión está en el lóbulo:",
-        options: ["Parietal", "Temporal", "Occipital", "Frontal", "Insular"],
-        correct: 2,
-        justification: "La corteza visual primaria, responsable de procesar la información visual, se localiza en el lóbulo occipital."
-    },
-    {
-        question: "La glándula que tiene función endocrina y exocrina a la vez es:",
-        options: ["Hipófisis", "Páncreas", "Tiroides", "Paratiroides", "Suprarrenal"],
-        correct: 1,
-        justification: "El páncreas tiene función exocrina (secreta enzimas digestivas al duodeno) y endocrina (produce insulina y glucagón)."
-    },
-    {
-        question: "La hormona que regula el crecimiento corporal es:",
-        options: ["FSH", "LH", "Prolactina", "Somatotropina", "Oxitocina"],
-        correct: 3,
-        justification: "La somatotropina (hormona del crecimiento, GH) es secretada por la adenohipófisis y estimula el crecimiento de tejidos y huesos."
-    },
-    {
-        question: "La hormona que regula el metabolismo basal es:",
-        options: ["Tiroxina", "Insulina", "Progesterona", "Cortisol", "Adrenalina"],
+        question: "Para el historiador griego Herodoto, Egipto era un don del río Nilo porque:",
+        options: ["Sus crecientes anuales fertilizaban sus tierras", "Permitió el desarrollo del transporte y el comercio", "Sus caídas y cataratas generaban energía", "Los campesinos lo adoraban como a un dios"],
         correct: 0,
-        justification: "La tiroxina (T4), producida por la glándula tiroides, regula el metabolismo basal y el desarrollo corporal."
+        justification: "Las inundaciones anuales del Nilo depositaban limo fértil que permitía la agricultura egipcia, base de la civilización."
     },
     {
-        question: "La hormona sexual masculina principal es:",
-        options: ["Estrógeno", "Progesterona", "Testosterona", "Prolactina", "Oxitocina"],
+        question: "En Egipto, durante el Imperio Antiguo, los privilegios de los gobernantes y sacerdotes trajeron como consecuencia el:",
+        options: ["Debilitamiento de las rentas del Imperio y pérdidas de territorio", "Fortalecimiento de la alta burocracia militar y eclesiástica", "Fortalecimiento de los sacerdotes y la construcción de templos", "Debilitamiento del faraón y la ruptura de la unidad de Egipto"],
+        correct: 3,
+        justification: "Los privilegios excesivos de nobles y sacerdotes debilitaron el poder central del faraón y fragmentaron políticamente Egipto."
+    },
+    {
+        question: "En Egipto, durante el Imperio Nuevo, ______ logró la máxima expansión, ______ implantó el monoteísmo y ______ construyó el templo de Abu Simbel.",
+        options: ["Tutmosis III – Amenofis VI – Ramses I", "Tutmosis I – Tutankamón – Ramses II", "Akénatón – Amenofis IV – Ramses I", "Tutmosis III – Amenofis IV – Ramses II"],
+        correct: 3,
+        justification: "Tutmosis III fue el gran conquistador, Amenofis IV (Akenatón) instauró el culto monoteísta a Atón, y Ramsés II construyó el templo de Abu Simbel."
+    },
+    {
+        question: "Correlación correcta entre los periodos y sus acontecimientos en la historia de Mesopotamia: I.Sumerio acadio / II.Primer Imperio babilónico / III.Imperio asirio / IV.Segundo Imperio babilónico — a.Expansión máxima / b.Invasión hitita / c.Zigurat de Marduk / d.Escritura cuneiforme",
+        options: ["1d, 2b, 3c, 4a", "1a, 2b, 3c, 4d", "1b, 2a, 3d, 4c", "1d, 2b, 3a, 4c"],
+        correct: 3,
+        justification: "Los sumerios inventaron la escritura cuneiforme, los hititas invadieron el 1er Imperio babilónico, los asirios tuvieron la máxima expansión y el 2do Imperio babilónico construyó el Zigurat de Marduk."
+    },
+    {
+        question: "En la historia de la antigua Grecia, la época conocida como Edad Oscura está relacionada con la:",
+        options: ["Invasión de los dorios", "Fortificación de las polis", "Crisis en la producción", "Crisis en el comercio"],
+        correct: 0,
+        justification: "La invasión de los dorios destruyó la civilización micénica e inició el período de retroceso cultural conocido como Edad Oscura."
+    },
+    {
+        question: "La estratificación social espartana estuvo formada por las tres clases sociales siguientes:",
+        options: ["Espartanos - clase media - pobres", "Espartanos – clientes - plebeyos", "Espartanos – periecos - ilotas", "Espartanos – metecos - esclavos"],
         correct: 2,
-        justification: "La testosterona, producida por las células de Leydig en los testículos, es responsable de los caracteres sexuales masculinos."
+        justification: "La sociedad espartana se dividía en espartiatas (ciudadanos plenos), periecos (libres sin derechos políticos) e ilotas (siervos del estado)."
     },
     {
-        question: "Los espermatozoides adquieren movilidad en:",
-        options: ["Próstata", "Epidídimo", "Vesícula seminal", "Uretra", "Conducto deferente"],
+        question: "El enfrentamiento de los griegos contra la expansión del Imperio Persa en Asia Menor, conocido como guerras Púnicas en el enunciado, ¿cuál fue su causa real?",
+        options: ["El afán expansionista griego", "La riqueza de la Magna Grecia", "Expansión Persa de oriente a occidente", "La sublevación Jonia"],
+        correct: 3,
+        justification: "La causa directa fue la sublevación de las colonias jonias contra el dominio persa, lo que desencadenó la intervención de Atenas y el conflicto con Persia."
+    },
+    {
+        question: "La religión griega se diferenciaba del politeísmo de los pueblos orientales en:",
+        options: ["La humanización de los dioses", "El monoteísmo", "La fundamentación moral", "El culto doméstico"],
+        correct: 0,
+        justification: "Los griegos dieron a sus dioses forma, emociones y defectos humanos, a diferencia de los dioses orientales más abstractos y distantes."
+    },
+    {
+        question: "Durante la república romana los ______ representaban el poder ejecutivo. Eran dos, tenían el control del ejército y su cargo duraba un año:",
+        options: ["Senadores", "Ediles", "Dictadores", "Cónsules"],
+        correct: 3,
+        justification: "Los cónsules eran los magistrados más altos de la República romana, ejercían el poder ejecutivo y el mando militar por un año."
+    },
+    {
+        question: "Mediante la ley ______ se comparten las magistraturas entre patricios y plebeyos, particularmente el cargo de cónsul:",
+        options: ["Canuleya", "Licinia", "Pubilia", "Ogunilia"],
         correct: 1,
-        justification: "En el epidídimo los espermatozoides completan su maduración y adquieren capacidad de movimiento (motilidad)."
+        justification: "La Ley Licinia (367 a.C.) estableció que uno de los dos cónsules debía ser plebeyo, abriendo las magistraturas a este grupo."
     },
     {
-        question: "La secreción rica en fructosa que nutre a los espermatozoides proviene de:",
-        options: ["Próstata", "Epidídimo", "Vesículas seminales", "Glándula de Cowper", "Testículos"],
+        question: "Establezca el orden cronológico correcto: I) Guerras púnicas  II) Octavio emperador  III) Primer Triunvirato  IV) Edicto de Milán",
+        options: ["I, III, IV, II", "IV, II, I, III", "III, II, I, IV", "II, III, IV, I"],
+        correct: 0,
+        justification: "Guerras púnicas (s.III-II a.C.) → Triunvirato (60 a.C.) → Octavio emperador (27 a.C.) → Edicto de Milán (313 d.C.)."
+    },
+    {
+        question: "El proceso de expansión republicana romana: primero conquistaron ______ en el sur. Luego enfrentaron a ______ en las guerras ______:",
+        options: ["Sicilia – Persia – médicas", "Magna Grecia – Cartago – púnicas", "Córcega – Alejandría – púnicas", "Egipto – Persia – médicas"],
+        correct: 1,
+        justification: "Roma conquistó la Magna Grecia al sur de Italia y luego enfrentó a Cartago en las tres guerras púnicas para dominar el Mediterráneo occidental."
+    },
+    {
+        question: "Roma durante la fase imperial protegió su línea de fronteras con un ejército permanente. Esta línea fronteriza se denominó:",
+        options: ["Limes", "Línea Augusta", "Las líneas del Este", "Fortificaciones"],
+        correct: 0,
+        justification: "El Limes era el sistema de fronteras fortificadas del Imperio Romano que protegía sus territorios de las invasiones bárbaras."
+    },
+    {
+        question: "Las tierras entregadas al siervo se llamaban ______ y las tierras cuya producción iba en favor de la nobleza feudal recibían el nombre de ______:",
+        options: ["Manso - corvea", "Beneficio - manso", "Reserva - manso", "Manso - reserva"],
+        correct: 3,
+        justification: "El manso era la parcela del siervo para su sustento y la reserva era la tierra cuya producción beneficiaba directamente al señor feudal."
+    },
+    {
+        question: "Característica que corresponde a los siervos de la Gleba en el régimen feudal:",
+        options: ["Podían abandonar el feudo", "Buscan protección de otro señor", "Realizan la ceremonia del homenaje", "Carecían de libertad"],
+        correct: 3,
+        justification: "Los siervos de la gleba estaban atados a la tierra, no podían abandonarla ni elegir otro señor; carecían de libertad personal."
+    },
+    {
+        question: "Al hacer alianzas con las iglesias, Carlomagno buscaba reforzar su poder político y religioso. Por ello el Imperio Carolingio se denominó:",
+        options: ["El mensajero de Dios", "Brazo armado de la Iglesia", "Fuente del Catolicismo", "La peste medieval"],
+        correct: 1,
+        justification: "El Imperio Carolingio fue llamado el brazo armado de la Iglesia por su estrecha alianza militar y política con el papado."
+    },
+    {
+        question: "Pipino el Breve, al derrocar al rey holgazán Childerico III, puso fin a la dinastía merovingia y:",
+        options: ["Fundó la dinastía carolingia en el reino de los francos", "Terminó con los abusos de los lombardos", "Venció a los árabes en la batalla de Poitiers", "Estableció el Imperio Carolingio en las Galias"],
+        correct: 0,
+        justification: "Pipino el Breve fue el fundador de la dinastía carolingia tras deponer legalmente a Childerico III con apoyo papal."
+    },
+    {
+        question: "Los siervos pagaban tasas al señor feudal y al clero. El pago por el uso de hornos y molinos se conocía como:",
+        options: ["Las banalidades", "El diezmo y la corvea", "La pernada", "El portazgo"],
+        correct: 0,
+        justification: "Las banalidades eran los pagos obligatorios que los siervos hacían al señor por usar las instalaciones del feudo: hornos, molinos y lagares."
+    },
+    {
+        question: "Con respecto a las formas feudales de articulación social, identifique los enunciados correctos: I.Órdenes bellatores/oratores/laboratores  II.Homenaje prestado por los señores  III.Predominio de dependencia personal  IV.Investidura entregada por los vasallos  V.Vínculos de vasallaje y servidumbre",
+        options: ["VFVFV", "VVVVF", "FFVVV", "VFFFV"],
+        correct: 0,
+        justification: "Son correctos I, III y V. El homenaje lo prestan los vasallos (no los señores) y la investidura la da el señor (no el vasallo)."
+    },
+    {
+        question: "Los artesanos medievales que impulsaron el renacimiento comercial se agruparon en ______ articulándose a través de ______ comerciales y ferias:",
+        options: ["Señoríos - ciudades", "Oficios - mansos", "Cabildos - puertos", "Gremios - ligas"],
+        correct: 3,
+        justification: "Los artesanos se organizaban en gremios y el comercio interregional se articulaba mediante ligas comerciales como la Hanseática."
+    },
+    {
+        question: "Los missi dominici del Imperio Carolingio tenían por función supervisar:",
+        options: ["El accionar religioso y militar de los basileus", "El poder de los condes y marqueses", "La deuda económica de los laboratores", "La fidelidad del campesino colono"],
+        correct: 1,
+        justification: "Los missi dominici (un laico y un eclesiástico) supervisaban y controlaban el poder de los condes y marqueses en nombre del emperador."
+    },
+    {
+        question: "El feudalismo se apoyaba en la posesión de la tierra y las relaciones de dependencia. Una de sus características económicas fue:",
+        options: ["Reducción de la circulación monetaria y las actividades comerciales", "Incremento de las actividades de compra y venta entre los feudos", "Creación de ligas de burgos comerciales por los señores feudales", "Incremento de rentas y tributos a los nobles vasallos del señor feudal"],
+        correct: 0,
+        justification: "El feudalismo se caracterizó por una economía de subsistencia con mínima circulación monetaria y escaso comercio exterior."
+    },
+    {
+        question: "En la sociedad europea medieval, los señores feudales estaban obligados a:",
+        options: ["Pagar una renta anual", "Contribuir en dinero", "Proteger a sus vasallos", "Entregar el diezmo"],
         correct: 2,
-        justification: "Las vesículas seminales secretan un líquido rico en fructosa que sirve como fuente de energía para los espermatozoides."
+        justification: "La principal obligación del señor dentro del pacto feudal era brindar protección militar y seguridad a sus vasallos."
+    },
+    {
+        question: "Forma de gobierno establecida por los anglosajones:",
+        options: ["Monarquía", "Talasocracia", "Heptarquía", "Aristocracia", "Timocracia"],
+        correct: 2,
+        justification: "Los anglosajones establecieron la Heptarquía, un sistema político de siete reinos en Inglaterra tras las invasiones del siglo V."
+    },
+    {
+        question: "Derrota sufrida por los hunos ante el ejército aliado bárbaro-romano dirigido por Aecio:",
+        options: ["Aquitania", "Gala Placidia", "Cataláunicos", "Guadale"],
+        correct: 2,
+        justification: "Los hunos de Atila fueron derrotados en los Campos Cataláunicos (451 d.C.) en la batalla considerada una de las más importantes de la Antigüedad tardía."
+    },
+    {
+        question: "El uso actual de colchones, jabón, pantalones, toneles y el consumo de embutidos constituyen aportes culturales heredados de los:",
+        options: ["Romanos", "Griegos", "Bárbaros", "Hunos", "Fenicios"],
+        correct: 2,
+        justification: "Los pueblos bárbaros (germanos) legaron al mundo occidental una serie de costumbres cotidianas que aún persisten en la cultura europea."
+    },
+    {
+        question: "Señalar el enunciado EQUIVOCADO sobre la invasión violenta de los bárbaros:",
+        options: ["Francos: Se establecieron en Las Galias", "Visigodos: Ocuparon las islas Británicas", "Anglos y sajones: Se establecieron en Inglaterra", "Atila, rey de los hunos: Procedían de la Mongolia"],
+        correct: 1,
+        justification: "Los Visigodos no ocuparon las islas Británicas; se establecieron en la Península Ibérica (actuales España y Portugal)."
+    },
+    {
+        question: "El juicio de Dios donde se sometía al acusado a pruebas extremas, y cuya superación significaba la inocencia, se llamaba:",
+        options: ["Wergeld", "Bifrost", "Asgard", "Ordalía"],
+        correct: 3,
+        justification: "La ordalía era el juicio de Dios medieval en el que se sometía al acusado a pruebas físicas extremas; sobrevivir era señal de inocencia divina."
+    },
+    {
+        question: "NO es característica del feudalismo:",
+        options: ["La base económica es la propiedad de la tierra", "El poder del monarca aumenta en perjuicio del poder privado del señor feudal", "Los feudos son independientes unos de otros", "La sociedad feudal está dividida en estamentos"],
+        correct: 1,
+        justification: "En el feudalismo el poder del monarca se DEBILITABA, no aumentaba; el poder real estaba fragmentado entre los señores feudales."
+    },
+    {
+        question: "Clasificó y editó las leyes romanas en el Código de Justiniano; encargo que cumplió el jurista:",
+        options: ["Belisario", "Adriano", "Justino", "Triboniano"],
+        correct: 3,
+        justification: "Triboniano fue el brillante jurista encargado por Justiniano de compilar y sistematizar el Corpus Juris Civilis, base del derecho occidental."
+    },
+    {
+        question: "Sobre el Imperio Bizantino señale lo correcto: I.Su capital fue Constantinopla  II.Su gobierno de mayor esplendor fue Justiniano  III.Su mayor ejemplo arquitectónico es Santa Sofía  IV.Están considerados los bibliotecarios del género humano",
+        options: ["Sólo II", "I y II", "II, III y IV", "I, II y III", "Todas"],
+        correct: 4,
+        justification: "Las cuatro afirmaciones son correctas: Constantinopla fue su capital, Justiniano su período de mayor esplendor, Santa Sofía su obra cumbre y preservaron el saber clásico."
+    },
+    {
+        question: "Sobre el Islam señale lo correcto: I.Su templo principal fue la Kaaba  II.Su libro sagrado es El Corán  III.Islam significa sumisión a lo divino  IV.El creyente es llamado musulmán",
+        options: ["Sólo I", "I y II", "I, II y III", "II, III y IV", "Todas"],
+        correct: 4,
+        justification: "Los cuatro enunciados son correctos y describen aspectos fundamentales de la religión islámica."
+    },
+    {
+        question: "Los preceptos fundamentales del Islam se conocen como Pilares del Islam. El más importante es:",
+        options: ["El ayuno durante dos meses del año", "La limosna obligatoria para la Iglesia", "La predestinación del hombre", "La fe en el dios Alá y Mahoma, su profeta", "La peregrinación anual a la ciudad de Medina"],
+        correct: 3,
+        justification: "La shahada (profesión de fe en Alá y en Mahoma como su profeta) es el primer y más importante pilar del Islam, base de la identidad musulmana."
+    },
+    {
+        question: "Una de las características sociales de la expansión urbana comercial de los siglos XI al XIII fue:",
+        options: ["La expansión de la banca comercial", "El crecimiento de las ciudades o burgos", "El debilitamiento de la burguesía mercantil", "La recuperación de los señores feudales"],
+        correct: 1,
+        justification: "El renacimiento comercial medieval trajo consigo el crecimiento de las ciudades o burgos, donde se concentraban los comerciantes y artesanos."
     }
 ];
 
@@ -582,16 +618,16 @@ function showResults() {
     const msg = document.getElementById('resultMessage');
     if (nota >= 17) {
         badge.textContent = '🏆 Sobresaliente'; badge.className = 'grade-badge badge-excelente';
-        msg.textContent = '¡Excelente desempeño! Dominas con solidez los sistemas del cuerpo humano. ¡Así se llega a la universidad! 🌟';
+        msg.textContent = '¡Excelente dominio de Historia Universal! Conoces con solidez desde las civilizaciones antiguas hasta la Edad Media. ¡Así se ingresa! 🌟';
     } else if (nota >= 14) {
         badge.textContent = '👏 Aprobado — Bueno'; badge.className = 'grade-badge badge-bueno';
-        msg.textContent = '¡Muy bien! Tienes buenos conocimientos de anatomía. Refuerza los temas donde fallaste y estarás listo para el examen de admisión. 📚';
+        msg.textContent = '¡Muy bien! Tienes buenos conocimientos históricos. Refuerza los temas donde fallaste y estarás listo para el examen de admisión. 📚';
     } else if (nota >= 11) {
         badge.textContent = '📖 Aprobado — Regular'; badge.className = 'grade-badge badge-regular';
-        msg.textContent = 'Vas por buen camino, pero aún hay sistemas que necesitan más repaso. ¡Tú puedes mejorar, sigue adelante! ✏️';
+        msg.textContent = 'Vas por buen camino, pero hay períodos que necesitan más repaso. ¡Tú puedes mejorar, sigue adelante! ✏️';
     } else {
         badge.textContent = '💪 Desaprobado — Sigue intentando'; badge.className = 'grade-badge badge-desaprobado';
-        msg.textContent = 'No te rindas. Cada error es una lección. Repasa los sistemas con calma, vuelve a intentarlo y verás cómo mejoras. ¡Ánimo! 🔥';
+        msg.textContent = 'No te rindas. Cada error es una lección. Repasa la línea del tiempo con calma, vuelve a intentarlo y verás cómo mejoras. ¡Ánimo! 🔥';
     }
 }
 
